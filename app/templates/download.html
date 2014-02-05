@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block title %}Download {{ title|replace('-', ' ')|title }} {% endblock %}
+{% block meta_desc %}
+{% set content = title|replace('-', ' ')|title %}
+    {{ meta_desc("Download Music Videos " ~ content) }}
+{% endblock %}
+{% block content %}
+<div class="container">
+
+  {{ jumbotron_tag('SOUNDRENALIN') }}
+
+  <center><h1>Download {{ title|replace('-', ' ')|title }}</h1></center>
+
+  <div class="well">
+    <center>
+      <div id="mediaspace">
+	<script type="text/javascript">
+	  jwplayer('mediaspace').setup({
+	  'flashplayer': 'http://www.soundrenalin.com/static/player.swf',
+	  'file': 'http://www.youtube.com/watch?v={{ id }}',
+	  'controlbar': 'bottom',
+	  'width': '640',
+	  'height': '480'
+	  });
+	</script>
+      </div>
+    </center>
+  </div>
+  <input type="hidden" name="IL_IN_TAG" value="1"/>
+  <p>
+    <center>
+	<a href="http://ads.ad-center.com/offer?prod=4&ref=4954931&q={{ title|replace('-', ' ')|title }}"><img src='/static/img/greyads.png'></a>
+    </center>
+  </p>
+  <hr>
+</div><!-- /container -->
+{% endblock %}

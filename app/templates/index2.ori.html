@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}Homepage {% endblock %}
+{% block meta_desc %}
+{{ meta_desc('SOUNDRENALIN - Music Videos Search Engine and Download Site') }}
+{% endblock %}
+{% block content %}
+<div class="container">
+
+{{ jumbotron_tag('SOUNDRENALIN') }}
+
+  <div class="well" style="text-align: center">
+    <h2>Latest Download</h2>
+    <p>
+      {% for d in data %}
+      <a href="/{{ d['query']|slug }}/">{{ d['query'] }}</a>,
+      {% endfor %}
+    </p>
+  </div>
+  <hr>
+</div><!-- /container -->
+{% endblock %}

@@ -1,0 +1,97 @@
+{% extends "base.html" %}
+{% block title %}Free MP3 {{ q|replace('-', ' ')|title }} {% endblock %}
+
+{% block metadesc %}
+<meta name="description" content="{{ q|replace('-', ' ')|title }} Free MP3 Download or Play | Soundernalin.net">
+{% endblock %}
+
+{% block content %}
+
+<script>
+  function wdpopUp(URL) {
+  day = new Date();
+  id = day.getTime();
+  eval("page" + id + " = window.open(URL, \'" + id + "\', \'toolbar=0,scrollbars=0,location=1,statusbar=0,menubar=0,resizable=1,width=745,height=720,left = 380,top = 134\');");
+  }
+</script>
+
+
+<div class="container">
+
+  {#{ jumbotron_tag('SOUNDRENALIN') }#}
+  <!-- Jumbotron -->
+  <div class="jumbotron">
+    <p class="tith1">{{ title }}</p>
+    <p class="lead">
+      Music Videos Download Sites | Search Engine
+    </p>
+    <div class="control-group">
+      <div class="controls">
+	<form id="searchbox" method="GET" action="/music">
+	    <input type="text" id="search" name="q" placeholder="Search ....">
+	    <input id="submit" type="submit" value="Search">
+	</form>
+	<!-- ads by inviteads -->
+	<!--Copy and paste the code below into the location on your website where the ad will appear.-->
+	<!--iframe src="http://ads.ad-center.com/smart_ad/display?ref=4954931&smart_ad_id=1102&q={{q|replace('-', ' ')}}" width="728" height="90" frameborder="0" scrolling="no" allowtransparency="true"></iframe-->
+	<a href="http://ads.ad-center.com/offer?prod=4&ref=4954931&q={{ q|replace('-', ' ')|title }}"><img src='/static/img/greyads.png'></a>
+	<!-- inviteads closed -->
+      </div>
+    </div>
+  </div><!-- jumbotron -->
+
+
+<div class="row">
+  <div class="span12" style="margin-bottom: 10px; margin-top: 10px;">
+    <center>
+    </center>
+  </div>
+</div>
+
+  <div class="well">
+    <div class="row">
+      <div class="span9">
+	<h1 style="font-size: 24px">{{q|replace('-', ' ')|title}} Free MP3 Download</h1>
+	<div class="row">
+	  <div class="span6">
+	    <p><a href="http://www.yourfilezone.com/signup?sf=search_music&ref=4954941&q={{ q|replace('-', ' ')|title }}">{{q|replace('-', ' ')|title}} Full Download</a></p><hr style="margin: 2px;">
+	    <p><a href="http://www.yourfilezone.com/signup?sf=search_music&ref=4954941&q={{ q|replace('-', ' ')|title }}">[Verified] {{q|replace('-', ' ')|title}}</a></p><hr style="margin: 2px;">
+	    <p><a href="http://www.yourfilezone.com/signup?sf=search_music&ref=4954941&q={{ q|replace('-', ' ')|title }}">{{q|replace('-', ' ')|title}} Direct Download</a></p><hr style="margin: 2px;">
+	    <input type="hidden" name="IL_IN_TAG" value="1"/>
+	  </div>
+	  <div class="span3 pull-right">
+	    <p>1376 downloads at 2864 kb/s</p>
+	    <p>402 downloads at 2157 kb/s</p>
+	    <p>1095 downloads at 1967 kb/s</p>
+	  </div>
+	</div>
+	{% for title in titles %}
+	    <!-- with link -->
+	    <p class="result"><a href="/{{ title|slug }}/">{{ title|slug|title|replace('-', ' ') }} MP3</a></p>
+	    <!-- nolink -->
+
+	  <div class="span3">
+	    <p class="result">
+	      <a href="javascript:wdpopUp('http://www.soundrenalin.com/play/{{videoid}}/{{videotitle|replace("'", "-")}}-mp3/')" role="button" class="btn btn-success">Play</a>  
+	      <a target="_blank" href="/download/{{ videoid }}/{{ videotitle }}-mp3/" class="btn btn-warning">Download</a>
+	    </p>
+	  </div>
+	</div>
+
+	{% endfor %}
+      </div>
+      <div class="span2">
+	<h1 style="font-size: 24px">Sponsors</h1>
+      </div>
+    </div>
+    
+  </div>
+  <hr>
+  <h2>Latest Download</h2>
+  {% for term in terms %}
+  <a href="/{{ term|slug|replace('/', '-') }}/">{{ term }}</a>,
+  {% endfor %}
+  <hr>
+
+</div><!-- /container -->
+{% endblock %}

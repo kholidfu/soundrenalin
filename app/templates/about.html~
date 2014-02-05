@@ -1,0 +1,157 @@
+{% extends "base.html" %}
+{% block title %}About {% endblock %}
+{% block content %}
+{{ jumbotron_tag("SOUNDRENALIN") }}
+<div class="well">
+<h1>Technology Used by This Site:</h1>
+<p>Here are the open source technology behind <a href="http://www.soundrenalin.com">Soundrenalin</a>:</p>
+<ul>
+<li><a href="http://www.ubuntu.com" rel="nofollow">Ubuntu 12.10 Server 32bit</a></li>
+<li><a href="http://www.python.org" rel="nofollow">Python</a></li>
+<li><a href="http://flask.pocoo.org" rel="nofollow">Flask</a></li>
+<li><a href="https://github.com/unbit/uwsgi-docs" rel="nofollow">uwsgi</a></li>
+<li><a href="http://nginx.org/" rel="nofollow">nginx</a></li>
+<li><a href="http://www.mongodb.org/" rel="nofollow">mongodb</a></li>
+</ul>
+<h2>How to Deploy Flask Apps with uwsgi and nginx</h2>
+<p>This is the first time I deploy python web framework with uwsgi and nginx. 
+(My previous project served by Apache and mod_wsgi.)</p>
+
+<p>Here are the step-by-step process:</p>
+
+<pre>
+A. Server Things:
+
+   1. Create a new server and adding new user (default is root):
+   <code>
+     # adduser sopier
+     # adduser sopier sudo
+   </code>
+
+   2. Install package needed:
+   <code>
+     sudo apt-get install build-essential
+     sudo apt-get install python-dev
+     sudo apt-get install python-pip
+     sudo apt-get install nginx
+     sudo apt-get install mongodb (optional)
+   </code>
+
+   3. Build Virtualenv:
+   <code>
+     sudo pip install virtualenv
+     virtualenv soundrenalin.com
+     cd soundrenalin.com
+     source bin/activate
+     pip install flask
+     pip install pymongo
+     pip install uwsgi
+   </code>
+
+   4. Upload and Extract Your Flask Apps
+   a. Uploading
+   <code>scp app.tar.gz sopier@xxx.xxx.xxx.xxx:</code>
+   b. Extracting
+   <code>tar zxvf app.tar.gz</code>
+   c. Project Tree:
+   And here is my project tree right now:
+   <code>
+     tree /home/sopier/soundrenalin.com
+
+     app/
+      __init__.py
+      static/
+      templates/
+      views.py
+     bin/
+     etc/
+     include/
+     lib/
+     local/
+     share/
+     run.py
+     requirements.txt
+
+     You can generate requirements.txt file in your local PC using this command:
+     
+     pip freeze > requirements.txt
+
+     And install it in the server using this command:
+     
+     pip install -r requirementst.txt
+   </code>
+   d. Edit your Flask module, make sure you surround app.run() with if __name__:
+   <code>
+     # content of run.py
+     from app import app
+     
+     if __name__ == "__main__":
+         app.run(debug=True)
+   </code>
+
+B. nginx Things:
+   Here is my nginx config (/etc/nginx/sites-available/default):
+   <code>
+     server {
+         listen       80;
+         server_name  www.soundrenalin.com;
+         location / { try_files $uri @app; }
+         location @app {
+             include uwsgi_params;
+             uwsgi_pass unix:/tmp/uwsgi.sock;
+         }
+     }
+   </code>
+C. uwsgi Things:
+   1. Create new ini file, for example I placed it in my apps directory: /home/sopier/soundrenalin.com/uwsgi.ini:
+   Fill with the code below:
+   <code>
+     [uwsgi]
+     chdir = /home/sopier/soundrenalin.com
+     uid = www-data
+     gid = www-data
+     chmod-socket = 666
+     socket = /tmp/uwsgi.sock
+     module = run
+     callable = app
+     virtualenv = /home/sopier/soundrenalin.com
+   </code>
+
+D. Restart nginx and uwsgi service:
+
+   1. Restart the service
+   <code>
+     sudo service nginx restart
+   </code>
+
+   4. Run the uwsgi in background:
+   <code>nohup uwsgi /home/sopier/soundrenalin.com/uwsgi.ini &</code>
+
+E. All Other Things:
+
+   1. After editing views.py file, kill the running uwsgi service and start over (run uwsgi inside your virtualenv)
+   <code>
+     ps ax | grep uwsgi
+     kill [pid]
+     nohup uwsgi /home/sopier/soundrenalin.com/uwsgi.ini &
+   </code>
+
+F. Install lxml inside virtualenv
+   sudo apt-get install libxml2-dev
+   sudo apt-get install libxslt1-dev
+   sudo apt-get install zlib1g-dev
+
+</pre>
+
+<p>Your site should be live now.. Happy hacking and keep learning!</p>
+
+<p>Discuss with me at:</p>
+<p>twitter: @sopier</p>
+<p>youtube: <a href="http://www.youtube.com/user/sopier">http://www.youtube.com/user/sopier</a></p>
+
+<p>soundrenalin is hosted at DigitalOcean</p>
+</div>
+
+ref == {{ ref }}
+
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}MP3 Index {{ alphabet }} {% endblock %}
+{% block meta_desc %}
+    {% set alphabet = alphabet %}
+    {{ meta_desc('Index of MP3 ' ~ alphabet ~ '  :: SOUNDRENALIN - Music Videos Search Engine') }}
+{% endblock %}
+{% block content %}
+<div class="container">
+
+  {{ jumbotron_tag('SOUNDRENALIN') }}
+
+  <div class="well">
+    <h2>MP3 Index {{ alphabet }}</h2>
+    {% for i in index %}
+    <ul>
+      <li><a href="/{{ i['query']|replace(' ', '-') }}/">{{ i['query'] }}</a></li>
+    </ul>
+    {% endfor %}
+  </div><!--well-->
+</div><!-- container -->
+<hr>
+{% endblock %}
+

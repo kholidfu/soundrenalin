@@ -1,0 +1,48 @@
+{% from "util.html" import meta_desc, header_tag, link_tag, script_tag, jumbotron_tag, footer_tag, play_button, analytics %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <base href="http://www.soundrenalin.org/" />
+    <title>{% block title %}{% endblock %} | SOUNDRENALIN.ORG</title>
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <meta http-equiv="Content-Script-Type" content="text/javascript" />
+    <meta http-equiv="content-language" content="en-us" />
+    <meta name="language" content="en" />
+    <meta http-equiv="language" content="en-US" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta content="INDEX,FOLLOW,NOARCHIVE,NOODP,NOYDIR" name="robots" /> <meta name="revisit-after" content="1 days" />
+    <meta name="google" content="notranslate" />
+    <meta name="google" value="notranslate" />
+    <meta name="google-site-verification" content="pHqRMfmqj9VwjC9AuRBZoysXvxTTfJ8FfymeMZt7-Rg" />
+    {% block metadesc %}{% endblock %}
+    {{ link_tag('bootstrap') }}
+    {{ link_tag('style') }}
+    {% block css %}
+    {% endblock %}
+    {{ script_tag('jquery-1.9.1') }}
+    {{ script_tag('bootstrap.min') }}
+    {{ script_tag('jwplayer') }}
+    {% block js %}
+    {% endblock %}
+  </head>
+  <body>
+    <div class="container">
+      <header>
+	{{ header_tag() }}
+      </header>
+      <section class="container">
+	{% block content %}{% endblock %}
+      </section>
+      <footer>
+	{{ footer_tag() }}
+      </footer>
+    </div>
+    {{ analytics() }}
+    <!--script type="text/javascript" src="http://webplayer.yahooapis.com/player.js"></script--> 
+    <script type="text/javascript">
+      var infolinks_pid = 77159;
+      var infolinks_wsid = 1;
+    </script>
+    <script type="text/javascript" src="http://resources.infolinks.com/js/infolinks_main.js"></script>
+  </body>
+</html>

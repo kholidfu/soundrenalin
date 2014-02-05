@@ -1,0 +1,4 @@
+import urllib
+import re
+
+re.findall(re.compile(r"black.*?>(.*?)</a>"), opener.open('http://www.index-of-mp3s.com').read())

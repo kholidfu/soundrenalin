@@ -1,0 +1,155 @@
+{%- macro meta_desc_short(content) -%}
+    <meta name="description" content="{{content}}">
+{%- endmacro -%}
+
+{%- macro link_tag(location) -%}
+  <link rel="stylesheet" href="/static/css/{{location}}.css">
+{%- endmacro -%}
+
+{%- macro script_tag(location) -%}
+  <script src="/static/js/{{ location }}.js"></script>
+{%- endmacro -%}
+
+{#
+{%- macro play_button(videoid, videotitle) -%}
+  <a href="http://www.youtube.com/watch?v={{ videoid }}" rel="nofollow" class="btn btn-success">Play</a>  <a target="_blank" href="/play/{{ videoid }}/{{ videotitle }}-mp3/" class="btn btn-warning">Download</a>
+{%- endmacro -%}
+#}
+
+{#
+{%- macro play_button(videoid, videotitle) -%}
+  <a href="#myModal" role="button" class="btn btn-success" data-toggle="modal">Play</a>  <a target="_blank" href="/play/{{ videoid }}/{{ videotitle }}-mp3/" class="btn btn-warning">Download</a>
+{%- endmacro -%}
+#}
+
+{%- macro header_tag() -%}
+<div class="container">
+  <div class="masthead">
+    <div class="navbar">
+      <div class="navbar-inner">
+	<div class="container">
+	  <ul class="nav">
+	    <li class="active">
+	      <a href="/">Home</a>
+	    </li>
+	    <li>
+	      <a href="/popular" rel="nofollow">Popular</a>
+	    </li>
+	    <li>
+	      <a href="/about" rel="nofollow">About</a>
+	    </li>
+	  </ul>
+	</div>
+      </div>
+    </div>
+    <!-- /.navbar -->
+  </div>
+</div>
+{%- endmacro -%}
+
+{%- macro jumbotron_tag(title) -%}
+  <!-- Jumbotron -->
+  <div class="jumbotron">
+    <p class="tith1">{{ title }}</p>
+    <p class="lead">
+      Music Videos Download Sites | Search Engine
+    </p>
+    <div class="control-group">
+      <div class="controls">
+	<form id="searchbox" method="GET" action="/music">
+	    <input type="text" id="search" name="q" placeholder="Search ....">
+	    <input id="submit" type="submit" value="Search">
+	</form>
+	<!-- ads by inviteads -->
+	<a href="http://ads.ad-center.com/offer?prod=4&ref=4954931&q={{ q|replace('-', ' ')|title }}"><img src='/static/img/greyads.png'></a>
+	<!-- inviteads closed -->
+      </div>
+    </div>
+  </div><!-- jumbotron -->
+  <div class="control-group">
+    <div class="controls">
+    </div>
+  </div>
+  <hr>
+  <!-- Example row of columns -->
+{%- endmacro -%}
+
+{%- macro footer_tag() -%}
+  <div class="footer">
+    <p>
+      Index of MP3: 
+      <a href="/mp3/index/a/">A</a> 
+      <a href="/mp3/index/b/">B</a> 
+      <a href="/mp3/index/c/">C</a> 
+      <a href="/mp3/index/d/">D</a> 
+      <a href="/mp3/index/e/">E</a> 
+      <a href="/mp3/index/f/">F</a> 
+      <a href="/mp3/index/g/">G</a> 
+      <a href="/mp3/index/h/">H</a> 
+      <a href="/mp3/index/i/">I</a> 
+      <a href="/mp3/index/j/">J</a> 
+      <a href="/mp3/index/k/">K</a> 
+      <a href="/mp3/index/l/">L</a> 
+      <a href="/mp3/index/m/">M</a> 
+      <a href="/mp3/index/n/">N</a> 
+      <a href="/mp3/index/o/">O</a> 
+      <a href="/mp3/index/p/">P</a> 
+      <a href="/mp3/index/q/">Q</a> 
+      <a href="/mp3/index/r/">R</a> 
+      <a href="/mp3/index/s/">S</a> 
+      <a href="/mp3/index/t/">T</a> 
+      <a href="/mp3/index/u/">U</a> 
+      <a href="/mp3/index/v/">V</a> 
+      <a href="/mp3/index/w/">W</a> 
+      <a href="/mp3/index/x/">X</a> 
+      <a href="/mp3/index/y/">Y</a> 
+      <a href="/mp3/index/z/">Z</a> 
+      <a href="/mp3/index/0/">0</a> 
+      <a href="/mp3/index/1/">1</a> 
+      <a href="/mp3/index/2/">2</a> 
+      <a href="/mp3/index/3/">3</a> 
+      <a href="/mp3/index/4/">4</a> 
+      <a href="/mp3/index/5/">5</a> 
+      <a href="/mp3/index/6/">6</a> 
+      <a href="/mp3/index/7/">7</a> 
+      <a href="/mp3/index/8/">8</a> 
+      <a href="/mp3/index/9/">9</a> 
+    </p>
+    <p>
+      © <a href="http://www.soundrenalin.net">Soundrenalin 2013</a> :: Proudly Powered by Python and Flask :: Developed by <a href="http://www.twitter.com/#!/sopier" rel="nofollow">@sopier</a>
+    </p>
+  </div>
+{%- endmacro -%}
+
+{#%- macro analytics() -%}
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-40850096-1', 'soundrenalin.com');
+  ga('send', 'pageview');
+
+</script>
+{%- endmacro -%#}
+
+{%- macro analytics() -%}
+<!-- Start of StatCounter Code for Default Guide -->
+<script type="text/javascript">
+var sc_project=9483662; 
+var sc_invisible=1; 
+var sc_security="b65182e0"; 
+var scJsHost = (("https:" == document.location.protocol) ?
+"https://secure." : "http://www.");
+document.write("<sc"+"ript type='text/javascript' src='" +
+scJsHost+
+"statcounter.com/counter/counter.js'></"+"script>");
+</script>
+<noscript><div class="statcounter"><a title="free hit
+counter" href="http://statcounter.com/free-hit-counter/"
+target="_blank"><img class="statcounter"
+src="http://c.statcounter.com/9483662/0/b65182e0/1/"
+alt="free hit counter"></a></div></noscript>
+<!-- End of StatCounter Code for Default Guide -->
+{%- endmacro -%}

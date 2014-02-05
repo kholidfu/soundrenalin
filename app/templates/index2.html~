@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block title %}Homepage {% endblock %}
+{% block meta_desc %}
+{{ meta_desc('SOUNDRENALIN - Music Videos Search Engine and Download Site') }}
+{% endblock %}
+{% block content %}
+<div class="container">
+
+{{ jumbotron_tag('SOUNDRENALIN') }}
+
+  <div class="well" style="text-align: center">
+    <h2>Latest Download</h2>
+    <input type="hidden" name="IL_IN_TAG" value="1"/>
+    <p>
+      {% for d in data %}
+      {% if d['query'] %}
+      {% if 'xxx' not in d['query'] %}
+      {% if 'sex' not in d['query'] %}
+      {% if 'fuck' not in d['query'] %}
+      {% if 'http' not in d['query'] %}
+      {% if 'porn' not in d['query'] %}
+      {% if 'porno' not in d['query'] %}
+      {% if 'Porno' not in d['query'] %}
+      {% if 'bokep' not in d['query'] %}
+      {% if 'telanjang' not in d['query'] %}
+      <a style="font-size: 13px;" href="/{{ d['query']|replace('/', '-')|slug }}/">{{ d['query']|lower }}</a>,
+      {% endif %}
+      {% endif %}
+      {% endif %}
+      {% endif %}
+      {% endif %}
+      {% endif %}
+      {% endif %}
+      {% endif %}
+      {% endif %}
+      {% endif %}
+      {% endfor %} 
+    </p>
+  </div>
+  <hr>
+</div><!-- /container -->
+{% endblock %}

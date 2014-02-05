@@ -1,0 +1,56 @@
+<html>
+  <head>
+    <title>Play {{ title|replace('-', ' ')|title }}</title>
+    <script src="/static/js/jwplayer.js"></script>
+  </head>
+  <body>
+    <center><h1 style="font-size: 12px; font-weight: bold;">Download {{ title|replace('-', ' ')|title }}</h1></center>
+    <center>
+      <!--iframe width="720" height="380px" src="http://www.youtube.com/embed/{{id}}" frameborder="0" allowfullscreen></iframe-->
+
+      <div id="mediaspace">
+	<script type="text/javascript">
+	  jwplayer('mediaspace').setup({
+	  'flashplayer': 'http://www.soundrenalin.com/static/player.swf',
+	  'file': 'http://www.youtube.com/watch?v={{ id }}',
+	  'controlbar': 'bottom',
+	  'width': '720',
+	  'height': '380'
+	  });
+	</script>
+      </div>
+      <input type="hidden" name="IL_IN_TAG" value="1"/>
+      
+      <!-- AddThis Button BEGIN -->
+	<!--div class="addthis_toolbox addthis_default_style " style="align: center;">
+          <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+          <a class="addthis_button_tweet"></a>
+          <a class="addthis_button_pinterest_pinit"></a>
+          <a class="addthis_counter addthis_pill_style"></a>
+	</div>
+      <script type="text/javascript">var addthis_config = {"data_track_addressbar":true};</script>
+      <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-51d105c57d1cce8c"></script-->
+      <!-- AddThis Button END -->
+
+    </center>
+    <script type="text/javascript">
+      var infolinks_pid = 77159;
+      var infolinks_wsid = 1;
+    </script>
+    <script type="text/javascript" src="http://resources.infolinks.com/js/infolinks_main.js"></script>
+
+    <a href="http://ads.ad-center.com/offer?prod=4&ref=4954931&q={{ title|replace('-', ' ')|title }}"><img src='/static/img/greyads.png'></a>
+
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      
+      ga('create', 'UA-40850096-1', 'soundrenalin.com');
+      ga('send', 'pageview');
+      
+    </script>
+
+  </body>
+</html>
